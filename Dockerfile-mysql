@@ -2,7 +2,6 @@ FROM mysql:5.5
 
 ENV MYSQL_DATABASE oa
 ENV MYSQL_USER root
-ENV MYSQL_PASSWORD
 ENV MYSQL_RANDOM_ROOT_PASSWORD yes
 
 COPY database/ /docker-entrypoint-initdb.d/

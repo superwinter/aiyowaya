@@ -1,48 +1,48 @@
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
+-- MySQL dump 10.13  Distrib 8.0.26, for macos11.3 (x86_64)
 --
--- Database: `oa`
---
+-- Host: localhost    Database: oa
+-- ------------------------------------------------------
+-- Server version	8.0.26
 
--- --------------------------------------------------------
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
 -- Table structure for table `oa_list`
 --
 
-CREATE TABLE IF NOT EXISTS `oa_list` (
-  `id` int(10) NOT NULL,
+DROP TABLE IF EXISTS `oa_list`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `oa_list` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `oa_id` varchar(50) NOT NULL,
   `icon` varchar(255) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `friends` int(8) NOT NULL,
+  `friends` int NOT NULL,
   `title` varchar(20) NOT NULL,
   `intention` varchar(255) NOT NULL,
-  `time` int(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+  `time` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `oa_id` (`oa_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=164 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Dumping data for table `oa_list`
---
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-INSERT INTO `oa_list` (`id`, `oa_id`, `icon`, `name`, `friends`, `title`, `intention`, `time`) VALUES
-(1, '@qee2723n', 'https://obs.line-scdn.net/0hQkTqUHpbDkRpCCKJVgFxE1VNACkeJggMEW1AdxgOBHVAa0tBV29JIR5dWXwTah4bXG1BJR9YA3FN/preview', '京城商業銀行', 923451, 'ico_certified', '銀行 - 換匯資訊', 15);
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `oa_list`
---
-ALTER TABLE `oa_list`
-  ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `oa_list`
-  ADD UNIQUE (`oa_id`);
-
---
--- AUTO_INCREMENT for table `oa_list`
---
-ALTER TABLE `oa_list`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
+-- Dump completed on 2021-10-16 20:33:04
