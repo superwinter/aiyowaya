@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  oa-mysql:
+    container_name: oa-mysql
+    build:
+      context: .
+      dockerfile: Dockerfile-mysql
+    restart: always
+
+  oa-app:
+    container_name: oa-app
+    build:
+      context: .
+      dockerfile: Dockerfile-app
+    depends_on:
+      - oa-mysql
+    ports:
+      - "8181:8181"
+    restart: always
