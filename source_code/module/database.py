@@ -3,7 +3,7 @@ import datetime
 
 class Database:
     def connect(self):
-        return pymysql.connect(host="localhost", user="root", password="", database="oa", charset='utf8mb4')
+        return pymysql.connect(host="oa-mysql", user="dev", password="dev", database="oa", charset='utf8mb4')
 
     def get_time(self):
         datetime_dt = datetime.datetime.today()
