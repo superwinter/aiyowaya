@@ -10,7 +10,6 @@ db = Database()
 @app.route('/')
 def index():
     data = db.read(None)
-
     return render_template('index.html', data = data)
 
 @app.route('/add/')
@@ -37,7 +36,9 @@ def update(id):
         return redirect(url_for('index'))
     else:
         session['update'] = id
-        return render_template('update.html', data = data)
+        title = db.read("title");
+        intention = db.read("intention");
+        return render_template('update.html', data=data, title=title, intention=intention)
 
 @app.route('/updateoa', methods = ['POST'])
 def updateOA():

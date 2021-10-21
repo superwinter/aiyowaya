@@ -61,6 +61,7 @@
                     <th>Title</th>
                     <th>Intention</th>
                     <th>BG</th>
+                    <th>AD</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -69,6 +70,7 @@
                     {% if data|length == 0 %}
                   <tr>
                     <td>No Data</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -101,6 +103,7 @@
                       {% endif %}
                       <img src="{{ image }}" width="84" height="84">
                     </td>
+                    <td>{{ row[9] }}</td>
                     <td align="center">
                       <a href="/update/{{ row[0]}}">
                         <button type="button" class="btn btn-sm btn-warning btn-flat" title="Update"><span class="glyphicon glyphicon-pencil"></span></button>

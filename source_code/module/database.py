@@ -4,7 +4,7 @@ import time
 
 class Database:
     def connect(self):
-        return pymysql.connect(host="", port="", user="", password="", database="", charset='utf8mb4')
+        return pymysql.connect(host="", port=, user="", password="", database="", charset='utf8mb4')
 
     def get_time(self):
         datetime_dt = datetime.datetime.today()
@@ -18,12 +18,17 @@ class Database:
         try:
             if id == None:
                 cursor.execute("SELECT * FROM oa_list order by oa_id desc")
+            elif id == "intention":
+                cursor.execute("SELECT DISTINCT intention FROM oa_list")
+            elif id == "title":
+                cursor.execute("SELECT DISTINCT title FROM oa_list")
             else:
                 cursor.execute(
-                    "SELECT * FROM oa_list where id = %s order by oa_id asc", (id,))
+                    "SELECT * FROM oa_list where id = %s order by oa_id desc", (id,))
 
             return cursor.fetchall()
-        except:
+        except Database.connect.Error as err:
+            print("Failed to select everything %s" % err)
             return ()
         finally:
             con.close()
@@ -54,7 +59,7 @@ class Database:
         datetime_str = Database.get_time(self)
         try:
             # print("[DEBUG] 1: before query")
-            cursor.execute("UPDATE oa_list set oa_id = %s, icon = %s, name = %s, friends = %s, title = %s, intention = %s, time = %s, bg = %s where id = %s",(data['oa_id'], data['icon'], data['name'], data['friends'], data['title'], data['intention'], datetime_str, data['bg'], id,))
+            cursor.execute("UPDATE oa_list set oa_id = %s, icon = %s, name = %s, friends = %s, title = %s, intention = %s, time = %s, bg = %s, ad = %s where id = %s",(data['oa_id'], data['icon'], data['name'], data['friends'], data['title'], data['intention'], datetime_str, data['bg'], data['ad'], id,))
             con.commit()
             # print("[DEBUG] 2: after query")
             return True
