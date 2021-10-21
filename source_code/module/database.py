@@ -1,9 +1,10 @@
 import pymysql
 import datetime
+import time
 
 class Database:
     def connect(self):
-        return pymysql.connect(host="oa-mysql", user="dev", password="dev", database="oa", charset='utf8mb4')
+        return pymysql.connect(host="13.59.217.247", port=6666, user="dev", password="dev", database="oa", charset='utf8mb4')
 
     def get_time(self):
         datetime_dt = datetime.datetime.today()
@@ -31,13 +32,16 @@ class Database:
         con = Database.connect(self)
         cursor = con.cursor()
         datetime_str = Database.get_time(self)
-
+        nowTime = int(time.time())
         try:
-            cursor.execute("INSERT INTO oa_list(oa_id, icon, name, friends, title, intention, time) VALUES(%s, %s, %s, %s, %s, %s, %s)",(data['oa_id'], data['icon'], data['name'], data['friends'], data['title'], data['intention'], datetime_str))
+            # print("[DEBUG] 1: before query")
+            cursor.execute("INSERT INTO oa_list(id, oa_id, icon, name, friends, title, intention, time, bg) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)",(str(nowTime), data['oa_id'], data['icon'], data['name'], data['friends'], data['title'], data['intention'], datetime_str, data['bg']))
+            # print("[DEBUG] 2: after query")
             con.commit()
 
             return True
-        except:
+        except Database.connect.Error as err:
+            print("Failed to select everything %s" % err)
             con.rollback()
 
             return False
@@ -48,13 +52,14 @@ class Database:
         con = Database.connect(self)
         cursor = con.cursor()
         datetime_str = Database.get_time(self)
-
         try:
-            cursor.execute("UPDATE oa_list set oa_id = %s, icon = %s, name = %s, friends = %s, title = %s, intention = %s, time = %s where id = %s",
-                                       (data['oa_id'], data['icon'], data['name'], data['friends'], data['title'], data['intention'], datetime_str, id,))
+            # print("[DEBUG] 1: before query")
+            cursor.execute("UPDATE oa_list set oa_id = %s, icon = %s, name = %s, friends = %s, title = %s, intention = %s, time = %s, bg = %s where id = %s",(data['oa_id'], data['icon'], data['name'], data['friends'], data['title'], data['intention'], datetime_str, data['bg'], id,))
             con.commit()
+            # print("[DEBUG] 2: after query")
             return True
-        except:
+        except Database.connect.Error as err:
+            print("Failed to select everything %s" % err)
             con.rollback()
 
             return False
@@ -70,7 +75,8 @@ class Database:
             con.commit()
 
             return True
-        except:
+        except Database.connect.Error as err:
+            print("Failed to select everything %s" % err)
             con.rollback()
 
             return False
@@ -81,15 +87,16 @@ class Database:
         con = Database.connect(self)
         cursor = con.cursor()
         datetime_str = Database.get_time(self)
-
+        nowTime = int(time.time())
         try:
-            cursor.execute("Replace into oa_list (oa_id, icon, name, friends, title, intention, time) VALUES(%s, %s, %s, %s, %s, %s, %s)", (data['oa_id'], data['icon'], data['name'], data['friends'], data['title'], data['intention'], datetime_str))
+            # print("[DEBUG] 1: before query")
+            cursor.execute("Replace into oa_list (id, oa_id, icon, name, friends, title, intention, time, bg) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)", (str(nowTime), data['oa_id'], data['icon'], data['name'], data['friends'], data['title'], data['intention'], datetime_str, data['bg']))
             con.commit()
-
+            # print("[DEBUG] 2: after query")
             return True
-        except:
+        except Database.connect.Error as err:
+            print("Failed to select everything %s" % err)
             con.rollback()
-
             return False
         finally:
             con.close()
