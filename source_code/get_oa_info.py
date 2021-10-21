@@ -18,29 +18,27 @@ def get_oa_detail(oaid):
 
 
 def get_oa_icon(tree):
-    return str(tree.xpath('//*[@id="profile"]//@src')).replace("['", "").replace("']", "").replace("[]", "")
+    return replace_str(str(tree.xpath('//*[@id="profile"]//@src')))
 
 
 def get_name(tree):
-    return str(tree.xpath('//*[@id="profile"]//h1/text()')).replace("['", "").replace("']", "").replace("[]", "")
+    return replace_str(str(tree.xpath('//*[@id="profile"]//h1/text()')))
 
 
 def get_friends(tree):
-    return str(tree.xpath('//*[@id="profile"]//div[1]/text()')).replace("['Friends ", "").replace(",", "").replace("']",
-                                                                                                                   "").replace("[]", "")
+    return replace_str(str(tree.xpath('//*[@id="profile"]//div[1]/text()')).replace("['Friends ", "").replace(",", ""))
 
 
 def get_title(tree):
-    return str(tree.xpath('//*[@id="profile"]//h1/@class')).replace("profile_title ", "").replace("['", "").replace("']", "").replace("[]", "")
+    return replace_str(str(tree.xpath('//*[@id="profile"]//h1/@class')).replace("profile_title ", ""))
 
 
 def get_bg(tree):
-    return str(tree.xpath('//*[@id="profile"]//@style')).replace("['background-image:url(", "").replace(")']", "").replace("[]", "")
+    return replace_str(str(tree.xpath('//*[@id="profile"]//@style')).replace("['background-image:url(", "").replace(")']", ""))
 
 
 def replace_str(str):
-    return str.replace("[", "").replace("'", "").replace("]", "").replace("Friends ", "").replace("profile_title ",
-                                                                                                  "").replace(",", "")
+    return str.replace("['", "").replace("']", "").replace("[]", "")
 
 
 def main():
