@@ -60,6 +60,7 @@
                     <th>Friends</th>
                     <th>Title</th>
                     <th>Intention</th>
+                    <th>BG</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -74,6 +75,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                   </tr>
                     {% else %}
                   <tr>
@@ -82,8 +84,23 @@
                     <td><img src="{{ row[2] }}" width="84" height="84"></td>
                     <td>{{ row[3] }}</td>
                     <td>{{ row[4] }}</td>
-                    <td>{{ row[5] }}</td>
+                    <td>
+                      {% if "ico_certified" in row[5] %}
+                        {% set image = "https://clovachatbot.ncloud.com/i659518339d685-8670-40a8-8c80-b8cd15263b81" %}
+                      {% else %}
+                        {% set image = "https://clovachatbot.ncloud.com/i35b518732a5bd-a6b2-4eec-8bb3-f5617f0addf6" %}
+                      {% endif %}
+                      <img src="{{ image }}" width="44" height="44">
+                    </td>
                     <td>{{ row[6] }}</td>
+                    <td>
+                      {% if row[8] != "" %}
+                        {% set image = row[8] %}
+                      {% else %}
+                        {% set image = "https://clovachatbot.ncloud.com/i35c568331qb3f-e9ee-4cb5-9621-16a7e4fcb198" %}
+                      {% endif %}
+                      <img src="{{ image }}" width="84" height="84">
+                    </td>
                     <td align="center">
                       <a href="/update/{{ row[0]}}">
                         <button type="button" class="btn btn-sm btn-warning btn-flat" title="Update"><span class="glyphicon glyphicon-pencil"></span></button>
