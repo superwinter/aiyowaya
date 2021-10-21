@@ -14,7 +14,9 @@ def index():
 
 @app.route('/add/')
 def add():
-    return render_template('add.html')
+    title = db.read("title");
+    intention = db.read("intention");
+    return render_template('add.html', title=title, intention=intention)
 
 @app.route('/addoa', methods = ['POST', 'GET'])
 def addpOA():

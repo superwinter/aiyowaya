@@ -40,7 +40,7 @@ class Database:
         nowTime = int(time.time())
         try:
             # print("[DEBUG] 1: before query")
-            cursor.execute("INSERT INTO oa_list(id, oa_id, icon, name, friends, title, intention, time, bg) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)",(str(nowTime), data['oa_id'], data['icon'], data['name'], data['friends'], data['title'], data['intention'], datetime_str, data['bg']))
+            cursor.execute("INSERT INTO oa_list(id, oa_id, icon, name, friends, title, intention, time, bg, ad) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",(str(nowTime), data['oa_id'], data['icon'], data['name'], data['friends'], data['title'], data['intention'], datetime_str, data['bg'], data['ad']))
             # print("[DEBUG] 2: after query")
             con.commit()
 
