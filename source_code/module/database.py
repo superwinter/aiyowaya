@@ -4,7 +4,7 @@ import time
 
 class Database:
     def connect(self):
-        return pymysql.connect(host="13.59.217.247", port=6666, user="dev", password="dev", database="oa", charset='utf8mb4')
+        return pymysql.connect(host="aiyowaya-db.ddns.net", port=6666, user="dev", password="dev", database="oa", charset='utf8mb4')
 
     def get_time(self):
         datetime_dt = datetime.datetime.today()
