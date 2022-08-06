@@ -4,7 +4,12 @@ import time
 
 class Database:
     def connect(self):
-        return pymysql.connect(host="aiyowaya-db.ddns.net", port=6666, user="dev", password="dev", database="oa", charset='utf8mb4')
+        return pymysql.connect(host=os.environ.get('CLEARDB_DATABASE_HOST'),
+                             user=os.environ.get('CLEARDB_DATABASE_USER'),
+                             password=os.environ.get('CLEARDB_DATABASE_PASSWORD'),
+                             db=os.environ.get('CLEARDB_DATABASE_DB'),
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
 
     def get_time(self):
         datetime_dt = datetime.datetime.today()
